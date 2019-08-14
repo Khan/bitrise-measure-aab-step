@@ -47,6 +47,8 @@ outputs:
   - GENERATED_APKS_MINMAX:
     opts:
       title: Min & max apk sizes (across device configurations)
+      description: Min & max apk sizes (across device configurations)
   - GENERATED_BUNDLE_SIZE:
     opts:
       title: Size of the generated .aab
+      description: Raw file size of the generated .aab file
