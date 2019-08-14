@@ -1,15 +1,14 @@
 
 #!/bin/bash
-echo "This is the value specified for the input 'example_step_input': ${example_step_input}"
+set -x
 
-#!/usr/bin/env bash
 curl -L -O https://github.com/google/bundletool/releases/download/0.10.2/bundletool-all-0.10.2.jar
 APK_SIZE=`du -hs $BITRISE_APK_PATH`
 BUNDLE_SIZE=`du -hs $BITRISE_AAB_PATH`
 echo $BUNDLE_SIZE
 echo $APK_SIZE
 java -jar bundletool-all-0.10.2.jar build-apks --bundle=$BITRISE_AAB_PATH --output=app.apks
-SIZES=`java -jar ~/Downloads/bundletool-all-0.10.2.jar get-size total --apks=app.apks`
+SIZES=`java -jar bundletool-all-0.10.2.jar get-size total --apks=app.apks`
 SIZES_IN_MB=`echo $SIZES|python3 -c 'import sys;print(", ".join(["{:0.2f}mb".format(int(x)/1000000.0) for x in sys.stdin.read().split("\r\n")[1].split(",")]))'`
 echo $SIZES_IN_MB | envman add --key GENERATED_APKS_MINMAX
 echo $BUNDLE_SIZE | envman add --key GENERATED_BUNDLE_SIZE
