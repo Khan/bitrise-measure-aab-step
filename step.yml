@@ -44,10 +44,14 @@ toolkit:
     entry_file: step.sh
 
 outputs:
+  - GENERATED_APKS_MINMAX_RAW:
+    opts:
+      title: Raw min & max apk sizes (across device configurations)
+      description: Formatted in bytes, like "123542343,137945745"
   - GENERATED_APKS_MINMAX:
     opts:
       title: Min & max apk sizes (across device configurations)
-      description: Min & max apk sizes (across device configurations)
+      description: Formatted like "12mb, 34mb"
   - GENERATED_BUNDLE_SIZE:
     opts:
       title: Size of the generated .aab
